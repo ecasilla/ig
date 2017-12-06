@@ -1,0 +1,77 @@
+{
+    "name": "ig",
+    "version": "0.0.1",
+    "description": "A automated ig like server",
+    "main": "dist/index.js",
+    "typings": "index.d.ts",
+    "scripts": {
+        "build": "ts-node accessories/building-log.ts && npm run clean-build && npm run lint && ts-node accessories/real-build-log.ts && tsc && npm run copy-json",
+        "lint": "ts-node accessories/formatting-log.ts && prettier --use-tabs --single-quote --tab-width 4 --write src/**/* typings/**/* tests/**/* && ts-node accessories/linting-log.ts && tslint -c tslint.json -p tsconfig.json -t stylish --fix src/**/*",
+        "lint-noFix": "ts-node accessories/lint-noFix-log.ts && prettier --use-tabs --single-quote --tab-width 4 src/**/* typings/**/* tests/**/* && tslint -c tslint.json -p tsconfig.json -t stylish src/**/*",
+        "test": "ts-node accessories/test-log.ts && cross-env NODE_ENV=test mocha tests/ --compilers ts:ts-node/register,tsx:ts-node/register --recursive --reporter spec",
+        "test-watch": "ts-node accessories/test-watch-log.ts && cross-env NODE_ENV=test mocha tests/ --compilers ts:ts-node/register,tsx:ts-node/register --recursive --reporter spec --watch",
+        "preCommit-msg": "ts-node accessories/pre-commit-log.ts",
+        "copy-json": "gulp copy-json",
+        "format": "",
+        "clean-build": "gulp clean-build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ecasilla/ig.git"
+    },
+    "author": "Ernie Casilla <ecasilla@icloud.com> (https://twitter.com/glitchcrab)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ecasilla/ig/issues"
+    },
+    "homepage": "https://github.com/ecasilla/ig#readme",
+    "dependencies": {
+        "@types/dotenv": "^4.0.2",
+        "@types/passport": "^0.4.1",
+        "@types/passport-local": "^1.0.32",
+        "@types/restify": "^5.0.6",
+        "@types/sequelize": "^4.0.79",
+        "bluebird": "^3.5.1",
+        "bunyan": "^1.8.12",
+        "composable-middleware": "^0.3.0",
+        "dotenv": "^4.0.0",
+        "fast-json-patch": "^2.0.6",
+        "jsonwebtoken": "^8.1.0",
+        "passport": "^0.4.0",
+        "passport-local": "^1.0.0",
+        "pg": "^6.4.2",
+        "pg-hstore": "^2.3.2",
+        "reflect-metadata": "^0.1.10",
+        "restify": "^6.3.4",
+        "restify-errors": "^5.0.0",
+        "restify-jwt": "^0.4.0",
+        "restify-routing": "^0.3.11",
+        "sequelize": "^4.26.0",
+        "sequelize-typescript": "^0.6.1"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.0.1",
+        "@types/del": "^3.0.0",
+        "@types/gulp": "^4.0.4",
+        "@types/mocha": "^2.2.41",
+        "@types/node": "^8.0.5",
+        "chai": "^4.1.0",
+        "cli-table": "^0.3.1",
+        "concurrently": "^3.5.0",
+        "cross-env": "^5.0.1",
+        "del": "^3.0.0",
+        "gulp": "^3.9.1",
+        "gulp-cli": "^1.4.0",
+        "lme": "^1.5.3",
+        "mocha": "^3.4.2",
+        "pre-commit": "^1.2.2",
+        "prettier": "^1.5.3",
+        "ts-node": "^3.3.0",
+        "tslint": "^5.5.0",
+        "typescript": "^2.4.2"
+    },
+    "pre-commit": [
+        "preCommit-msg",
+        "lint-noFix"
+    ]
+}

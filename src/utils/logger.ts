@@ -5,27 +5,27 @@ import config from '../config';
 
 let logger: bunyan;
 function logging() {
-	// -- Construct --
+  // -- Construct --
 
-	if (logger) {
-		return logger;
-	}
+  if (logger) {
+    return logger;
+  }
 
-	const loggerConfig = {
-		name: config.logName,
-		serializers: restify.bunyan.serializers,
-		streams: new Array()
-	};
+  const loggerConfig = {
+    name: config.logName,
+    serializers: restify.bunyan.serializers,
+    streams: new Array(),
+  };
 
-	if (config.logDir) {
-		const baselog = path.join(config.logDir, config.logName);
-		loggerConfig.streams.push({ level: 'debug', path: baselog + '.log' });
-	} else {
-		loggerConfig.streams.push({ level: 'trace', stream: process.stdout });
-	}
+  if (config.logDir) {
+    const baselog = path.join(config.logDir, config.logName);
+    loggerConfig.streams.push({ level: 'debug', path: baselog + '.log' });
+  } else {
+    loggerConfig.streams.push({ level: 'trace', stream: process.stdout });
+  }
 
-	logger = bunyan.createLogger(loggerConfig);
-	return logger;
+  logger = bunyan.createLogger(loggerConfig);
+  return logger;
 }
 
 export default logging();

@@ -1,11 +1,11 @@
+import * as RestifyRouter from 'restify-routing';
 import config from '../../config';
+import {User} from '../users/user.model';
 import local from './local';
-import RestifyRouter from 'restify-routing';
-import User from '../users/user.model';
 import {setup} from './local/passport';
 
 // Passport Configuration
-setup(User);
+setup(User as any);
 
 const router = new RestifyRouter();
 

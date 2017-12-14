@@ -1,4 +1,4 @@
-import RestifyRouter from 'restify-routing';
+import * as RestifyRouter from 'restify-routing';
 import config from '../../config';
 import * as auth from '../auth/auth.service';
 import * as controller from './user.controller';
@@ -15,7 +15,7 @@ router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.put('/:id', auth.isAuthenticated(), controller.upsert);
 router.patch('/:id', auth.isAuthenticated(), controller.patch);
 
-router.get('/all', auth.hasRole('admin'), controller.index);
+router.get('/all', controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 
 export default router;

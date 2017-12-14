@@ -1,7 +1,5 @@
-import Promise from 'bluebird';
+import * as Promise from 'bluebird';
 
-export default {
-	forgotPassword() {
-		return Promise.resolve();
-	}
-};
+export function forgotPassword() {
+  return Promise.resolve();
+}
